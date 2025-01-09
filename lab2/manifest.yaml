@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: itdt-front-deployment
+spec:
+  selector:
+    matchLabels:
+      app: itdt-front
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: itdt-front
+    spec:
+      containers:
+        - name: itdt-front
+          image: ifilyaninitmo/itdt-contained-frontend:master
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_USERNAME
+              value: "helenochcka"
+            - name: REACT_APP_COMPANY_NAME
+              value: "osa_company"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: itdt-front-service
+spec:
+  type: NodePort
+  selector:
+    app: itdt-front
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 3000
+      nodePort: 30080
