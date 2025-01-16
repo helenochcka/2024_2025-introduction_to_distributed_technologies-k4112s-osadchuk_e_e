@@ -1,0 +1,57 @@
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: rack1-pool
+spec:
+  cidr: 192.168.1.0/24
+  nodeSelector: rack=="rack1"
+
+---
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: rack2-pool
+spec:
+  cidr: 192.168.2.0/24
+  nodeSelector: rack=="rack2"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: ifilyaninitmo/itdt-contained-frontend:master
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_USERNAME
+              value: "osadchuk_e_e"
+            - name: REACT_APP_COMPANY_NAME
+              value: "osadchuk_company"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+spec:
+  type: NodePort
+  selector:
+    app: front
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  
