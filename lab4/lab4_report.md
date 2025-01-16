@@ -50,4 +50,4 @@ cluster.local — стандартное доменное имя для всех
 
 8. Схема организации
 
-   
+   ![image](https://github.com/user-attachments/assets/ac17d731-4e14-4a52-9a25-154a90bd3889)
