@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/e12e92bc-1691-49a1-af6c-b74194753369)- University: [ITMO University](https://itmo.ru/ru/)
+- University: [ITMO University](https://itmo.ru/ru/)
 - Faculty: [FICT](https://fict.itmo.ru)
 - Course: [Introduction to distributed technologies](https://github.com/itmo-ict-faculty/introduction-to-distributed-technologies)
 - Year: 2024/2025
